@@ -23,8 +23,20 @@ Thread Pool
         - ScheduledExecutorService - (extends ExecutorService) with methods for 
                                      scheduling tasks' execution
 
-    + Helper class Executors, for obtaining executor instances (interface implementations)
-    + Some pre-implementation of the executor service
+    + Helper class Executors, for obtaining executor instances 
+    (interface implementations that provided with pre-configurations)
+    + Some pre-implementation of the thread pool model
+        - ThreadPoolExecutor:
+            + Extensible thread pool implementation
+            + Basic input parameters it has: corePoolSize, maxPoolSize, keepAliveTime, workQueue...
+                - corePoolSize: number of initial worker threads
+                - maxPoolSize: number of threads the pool can reach to
+                - keepAliveTime: timeout of threads that are not from the core pool
+                - workQueue: the queue that contains tasks which the thread pool will execute
+
+        - ScheduledThreadPoolExecutor
+            + A subclass of ThreadPoolExecutor
+            + Provide configurations for task execution delay
 
 - Basic Thread Pool components
     + The pool of worker threads (managing the threads)
