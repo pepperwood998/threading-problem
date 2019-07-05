@@ -1,0 +1,25 @@
+The Dining Philosophers Problem
+- Idea:
+    Five silent philosophers (no inter-thread communication) sit at a round table 
+    with a bowl of spaghetti.
+    Forks are placed between each pair of adjacent philosophers (also 5 forks).
+
+    Each philosopher must alternatively think and eat.
+    Can only eat when having both left and right forks. Each folk can be held by 
+    only one philosopher.
+    Can only pick up a folk one by one.
+    After a philosopher finishes eating, put down the forks (available to others).
+
+- Problem:
+    + Deadlock:
+    All philosophers pick up their right forks at the same time. All of them 
+    will eternally wait for each other to release the folk.
+
+    + Resource Starvation:
+    Occur when a philosopher is unable to acquire both forks due to timing problem.
+
+- Solution:
+    + Resource  Hierarchy
+    Number the resource from 1 to 5, and each philosopher will always pick up 
+    the lower-numbered fork first then the higher-numbered fork.
+

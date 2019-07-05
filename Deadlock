@@ -1,0 +1,58 @@
+Deadlock
+- Definition:
+	Two or more threads are blocked forever, waiting for each other.
+	A thread waits for an object lock (acquired by a second thread), but that second thread
+	also waits for an object lock (acquired by the first thread).
+
+- Example:
+	public class Test {
+
+		public static void main(String[] args) {
+		    final String res1 = "content 1";
+		    final String res2 = "content 2";
+
+		    Thread t1 = new Thread() {
+		        public void run() {
+		            synchronized (res1) {
+		                System.out.println("Thread 1: locks on resource 1");
+
+		                try {
+		                    Thread.sleep(100);
+		                } catch (Exception e) {
+		                }
+
+		                synchronized (res2) {
+		                    System.out.println("Thread 1: locks on resource 2");
+		                }
+
+		                System.out.println("Thread 1, done");
+		            }
+		        }
+		    };
+
+		    Thread t2 = new Thread() {
+		        public void run() {
+		            synchronized (res2) {
+		                System.out.println("Thread 2: locks on resource 2");
+
+		                try {
+		                    Thread.sleep(100);
+		                } catch (Exception e) {
+		                }
+
+		                synchronized (res1) {
+		                    System.out.println("Thread 2: locks on resource 1");
+		                }
+
+		                System.out.println("Thread 2, done");
+		            }
+		        }
+		    };
+
+		    t1.start();
+		    t2.start();
+		}
+	}
+
+	* We sleep the threads to prevent one thread from finishing before the other start.
+

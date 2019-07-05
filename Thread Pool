@@ -1,0 +1,34 @@
+Thread Pool
+- Definition:
+    Group of worker threads, that are waiting for the job and reused many times.
+	Tasks will be put in a queue waiting to be executed.
+
+- Characteristic:
+    + Can control the number of threads our application is creating
+    + Can control their lifecycle
+    + Can schedule tasks' execution
+    + Keep incoming tasks in queue (wait for assignment)
+
+- Advantage:
+    + Better performance for saving time creating new thread 
+      (thread is executed and returned to the pool when the operation is done)
+    + Resource efficiency, not too much and not too little threads needed for 
+      some number of operations
+
+- Java Specific:
+    + Interfaces provided for executing tasks in a pool
+        - Executor                 - simple interface for executing tasks
+        - ExecutorService          - more complex, with additional methods for 
+                                     managing tasks and the executor itself
+        - ScheduledExecutorService - (extends ExecutorService) with methods for 
+                                     scheduling tasks' execution
+
+    + Helper class Executors, for obtaining executor instances (interface implementations)
+    + Some pre-implementation of the executor service
+
+- Basic Thread Pool components
+    + The pool of worker threads (managing the threads)
+    + A Thread Factory           (creating new threads)
+    + A queue storing tasks that are waiting to be executed
+
+
